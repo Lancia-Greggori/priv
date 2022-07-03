@@ -26,10 +26,8 @@ int main(int argc, char* argv[])
 	}
 
 	// start reading the file
-	
 	FILE* fp;
 	fp = fopen(DEFAULT_CONFIG_FILE, "r");
-
 	char temp_array[50], character = 0;
 
 	for(int i = 0; character != EOF; i++)
