@@ -1,0 +1,4 @@
+rc-service cupsd start
+systemctl start cupsd
+rc-service sshd start
+systemctl start sshd
