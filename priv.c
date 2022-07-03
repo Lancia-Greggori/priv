@@ -52,7 +52,6 @@ int main(int argc, char* argv[])
 	}
 
 	fprintf(stderr, "Error: the command you entered was not found in %s\n", DEFAULT_CONFIG_FILE);
-
 	return 4;
 
 }
