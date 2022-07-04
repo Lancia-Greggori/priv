@@ -17,12 +17,12 @@ int main(int argc, char* argv[])
 	else if(access(DEFAULT_CONFIG_FILE, R_OK) != 0)
 	{
 		fprintf(stderr, "Error: %s is either not readable or does not exist\n", DEFAULT_CONFIG_FILE);
-		return 2;
+		return 1;
 	}
 	else if((uid = getuid()) != DEFAULT_UID)
 	{
 		fprintf(stderr, "Error: the user executing this program with uid %i does not match the allowed uid %i, permission denied\n", uid, DEFAULT_UID);
-		return 3;
+		return 1;
 	}
 
 	// start reading the file
@@ -51,6 +51,6 @@ int main(int argc, char* argv[])
 	}
 
 	fprintf(stderr, "Error: the command you entered was not found in %s\n", DEFAULT_CONFIG_FILE);
-	return 4;
+	return 1;
 
 }
