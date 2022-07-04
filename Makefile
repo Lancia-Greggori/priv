@@ -6,3 +6,5 @@ install: priv
 	install -m 4755 ./priv $(PREFIX)/bin/priv
 clean: priv
 	rm priv
+uninstall:
+	rm $(PREFIX)/bin/priv
