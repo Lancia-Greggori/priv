@@ -9,9 +9,10 @@
 int main(int argc, char* argv[])
 {
 	int uid;
-	if(argc != 2)
+
+	if(argc < 2)
 	{
-		fprintf(stderr, "Error: priv only takes one argument\n");
+		fprintf(stderr, "Error: priv needs at least one argument\n");
 		return 1;
 	}
 	else if(access(DEFAULT_CONFIG_FILE, R_OK) != 0)
@@ -25,6 +26,22 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
+	char command[50];
+	memset(command, 0, 50);
+
+	if(argc == 2)
+	{
+		strcpy(command, argv[1]);
+	}
+	else
+	{
+		for(int i = 1; i < argc; i++)
+		{
+			strcat(command, argv[i]);
+			if(i != (argc-1)) strcat(command, " ");
+		}
+	}
+
 	// start reading the file
 	FILE* fp;
 	fp = fopen(DEFAULT_CONFIG_FILE, "r");
@@ -36,10 +53,10 @@ int main(int argc, char* argv[])
 		if(character == '\n')
 		{
 			temp_array[i] = '\0';
-			if(strcmp(argv[1], temp_array) == 0)
+			if(strcmp(command, temp_array) == 0)
 			{
 				setuid(0);
-				system(argv[1]);
+				system(command);
 				return 0;
 			}
 			else
