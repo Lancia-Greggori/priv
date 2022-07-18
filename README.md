@@ -6,7 +6,9 @@ It also checks for the UID of the user, and compares it to a hardcoded UID value
 ### Compilation and installation instructions
 The only thing you have to change when compiling the program is to change the DEFAULT_UID macro to match your users UID.
 For installations simply run as root:
-~~~# make install
+~~~
+# make install
+~~~
 
 ### Why use this program over what sudo already provides?
 priv is a much more simpler alternative to what sudo already provides if you have a single user and do not care about multi-user functionality.
