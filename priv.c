@@ -5,6 +5,7 @@
 
 #define DEFAULT_CONFIG_FILE "/etc/priv.commands"
 #define DEFAULT_UID 1000
+#define DEFAULT_ARRAY_SIZE 50
 
 int main(int argc, char* argv[])
 {
@@ -29,9 +30,9 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	char command[50];
+	char command[DEFAULT_ARRAY_SIZE];
 
-	memset(command, 0, 50);
+	memset(command, 0, DEFAULT_ARRAY_SIZE);
 
 	if(argc == 2)
 	{
@@ -49,8 +50,10 @@ int main(int argc, char* argv[])
 
 	// start reading the file
 	FILE* fp;
+
 	fp = fopen(DEFAULT_CONFIG_FILE, "r");
-	char temp_array[50], character = 0;
+
+	char temp_array[DEFAULT_ARRAY_SIZE], character = 0;
 
 	for(int i = 0; character != EOF; i++)
 	{
@@ -73,6 +76,7 @@ int main(int argc, char* argv[])
 				i = -1;
 			}
 		}
+
 		else temp_array[i] = character;
 	}
 
