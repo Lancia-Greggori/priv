@@ -3,8 +3,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define DEFAULT_CONFIG_FILE "/etc/priv.commands"
-#define DEFAULT_UID 1000
+#define DEFAULT_WHITELIST_FILE "/etc/priv.commands"
+#define ALLOWED_UID 1000
 #define DEFAULT_ARRAY_SIZE 50
 
 int main(int argc, char* argv[])
@@ -17,15 +17,15 @@ int main(int argc, char* argv[])
 
 		return 1;
 	  }
-	else if(access(DEFAULT_CONFIG_FILE, R_OK) != 0)
+	else if(access(DEFAULT_WHITELIST_FILE, R_OK) != 0)
 	  {
-		fprintf(stderr, "Error: %s is either not readable or does not exist\n", DEFAULT_CONFIG_FILE);
+		fprintf(stderr, "Error: %s is either not readable or does not exist\n", DEFAULT_WHITELIST_FILE);
 
 		return 1;
 	  }
-	else if((uid = getuid()) != DEFAULT_UID)
+	else if((uid = getuid()) != ALLOWED_UID)
 	  {
-		fprintf(stderr, "Error: the user executing this program with uid %i does not match the allowed uid %i, permission denied\n", uid, DEFAULT_UID);
+		fprintf(stderr, "Error: the user executing this program with uid %i does not match the allowed uid %i, permission denied\n", uid, ALLOWED_UID);
 
 		return 1;
 	  }
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 	// start reading the file
 	FILE* fp;
 
-	fp = fopen(DEFAULT_CONFIG_FILE, "r");
+	fp = fopen(DEFAULT_WHITELIST_FILE, "r");
 
 	char temp_array[DEFAULT_ARRAY_SIZE], character = 0;
 
@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
 		else temp_array[i] = character;
 	  }
 
-	fprintf(stderr, "Error: the command you entered was not found in %s\n", DEFAULT_CONFIG_FILE);
+	fprintf(stderr, "Error: the command you entered was not found in %s\n", DEFAULT_WHITELIST_FILE);
 
 	return 1;
 
