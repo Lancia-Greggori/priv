@@ -5,7 +5,7 @@ It also checks for the UID of the user, and compares it to a hardcoded UID value
 
 ### Compilation and installation instructions
 The only thing you have to change when compiling the program is to change the **DEFAULT_WHITELIST_FILE** macro in *priv.c* to match your users UID.
-For installation simply run as root:
+For installation simply run:
 ~~~
 $ make
 # make install
